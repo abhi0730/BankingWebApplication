@@ -5,8 +5,13 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.TreeMap;
+
+import supportClasses.Transaction;
 
 public class StorageDB {
 	
@@ -119,27 +124,22 @@ public class StorageDB {
 		}
 		return accMap;
 	}
-	public TreeMap<String,String> txListC(int AccountNumber)
+	public List<Transaction> txListC(int AccountNumber) throws NumberFormatException, ParseException
 	{
-		TreeMap<String, String> txListCc = new TreeMap<String,String>();
+		List<Transaction> transList = new ArrayList<Transaction>();
 		try {
 			pst = conn.prepareStatement("select * from txs where ACCNT_ID=?");
 			pst.setInt(1, AccountNumber);
 			ResultSet rs = pst.executeQuery();
-			if(rs.next())
+			while(rs.next())
 			{
-				txListCc.put("txnum", rs.getString("TX_TD"));
-				txListCc.put("type", rs.getString("TX_TYPE"));
-				txListCc.put("date", rs.getString("TX_DATE"));
-				txListCc.put("amount", rs.getString("AMOUNT"));
-				
-
+				transList.add(new Transaction(rs.getInt("TX_ID"), rs.getString("TX_TYPE"), Double.parseDouble( rs.getString("AMOUNT")),new SimpleDateFormat("yyyy-mm-dd").parse((rs.getString("TX_DATE")))));
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		return txListCc;
+		return transList;
 	}
 }

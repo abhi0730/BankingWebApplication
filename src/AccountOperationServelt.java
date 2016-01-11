@@ -49,7 +49,7 @@ public class AccountOperationServelt extends HttpServlet {
 			 if(success >0)
 			 {
 				 out.println("Low Balance");
-				 rd.include(request, response);
+				 rd.forward(request, response);
 			 }
 			 else
 			 {

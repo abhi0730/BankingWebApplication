@@ -1,6 +1,7 @@
 package dbOperations;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -42,6 +43,16 @@ public class AccountTranscations {
 			pst.setDouble(1, totalAnmount);
 			pst.setInt(2, accountNo);
 			pst.executeUpdate();
+			//--
+			pst = conn.prepareStatement("insert into txs values(null,'Credit',?,?,?)");
+			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+			pst.setTimestamp(1, date);
+			pst.setInt(2, (int)amountCredit);
+			pst.setInt(3, accountNo);
+			pst.executeUpdate();
+			//--
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -57,6 +68,15 @@ public class AccountTranscations {
 				pst.setDouble(1, totalAnmount);
 				pst.setInt(2, accountNo);
 				pst.executeUpdate();
+				//--
+				pst = conn.prepareStatement("insert into txs values(null,'Debit',?,?,?)");
+				java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
+				pst.setTimestamp(1, date);
+				pst.setInt(2, (int)amountDebit);
+				pst.setInt(3, accountNo);
+				
+				pst.executeUpdate();
+				//--
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

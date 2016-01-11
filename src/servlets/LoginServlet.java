@@ -71,6 +71,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("accNo", accNo);
 			session.setAttribute("accountName", values.get("name"));
 			session.setAttribute("balance", values.get("balance"));
+			//session.setAttribute("transactions", transactions);
 			RequestDispatcher rd = request.getRequestDispatcher("/MemberAccountPage.jsp");
 			rd.forward(request, response);
 		}

@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.TreeMap;
 
 public class StorageDB {
@@ -48,8 +49,24 @@ public class StorageDB {
 		pst.setString(1, username);
 		pst.setString(2, password);
 		
+		
 		return pst.executeUpdate();
 	}
+//	public int insertIntoTransactionTables(int txid, int tx_type, Date date, Double amount, int accnt_id) throws SQLException
+//	{
+//		conn = getConnection();
+//		pst = conn.prepareStatement("insert into accounts values(null,?,?,?,?)");
+//		pst.setInt(1, tx_type);
+//		pst.setDate(2, (java.sql.Date) date);
+//		pst.setDouble(3, amount);
+//		pst.setInt(4, accnt_id);
+//		pst.executeUpdate();
+//			
+//		pst = conn.prepareStatement("insert into txs values(?,?,LAST_INSERT_ID())");
+//		
+//		
+//		return pst.executeUpdate();
+//	}
 	
 	public int validateUser(String username, String password)
 	{
@@ -101,5 +118,28 @@ public class StorageDB {
 			e.printStackTrace();
 		}
 		return accMap;
+	}
+	public TreeMap<String,String> txListC(int AccountNumber)
+	{
+		TreeMap<String, String> txListCc = new TreeMap<String,String>();
+		try {
+			pst = conn.prepareStatement("select * from txs where ACCNT_ID=?");
+			pst.setInt(1, AccountNumber);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next())
+			{
+				txListCc.put("txnum", rs.getString("TX_TD"));
+				txListCc.put("type", rs.getString("TX_TYPE"));
+				txListCc.put("date", rs.getString("TX_DATE"));
+				txListCc.put("amount", rs.getString("AMOUNT"));
+				
+
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return txListCc;
 	}
 }

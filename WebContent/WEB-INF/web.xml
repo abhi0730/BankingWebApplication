@@ -40,7 +40,7 @@
     <description></description>
     <display-name>AccountOperationServelt</display-name>
     <servlet-name>AccountOperationServelt</servlet-name>
-    <servlet-class>AccountOperationServelt</servlet-class>
+    <servlet-class>servlets.AccountOperationServelt</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>AccountOperationServelt</servlet-name>

@@ -8,7 +8,7 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="./resources/cssFiles/accountpage.css" />
-<script
+ss<script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="./resources/jsFiles/accountPage.js"></script>
 
@@ -20,7 +20,7 @@
 
 	<div class="container-fluid">
 		<div id="top">
-			<form action="./BankLoginPage.html" method="post">
+			<form action="./BankLoginPage.html">
 				<input type="submit" class="btn btn-danger" value="LogOut"
 					style="float: right;" onclick="logout" />
 			</form>
@@ -77,35 +77,20 @@
 									<th><u>Debit</u></th>
 									<th><u>Totoal Amount</u></th>
 					</tr>
-					<tr>
 
-						<td>TN1</td>
-						<td>SampleName1</td>
-						<td>100</td>
-						<td>94</td>
-						<td>200</td>
 
-					</tr>
-					<tr>
 
-						<td>TN2</td>
-						<td>SampleName2</td>
-						<td>200</td>
-						<td>90</td>
-						<td>1000</td>
-
-					</tr>
 					<tfoot>
 						<tr>
 							<td><b><u><hr> Total
 										<hr></u></b></td>
-							<td><hr> Total Balance
+							<td><hr><b> Total Balance</b>
 								<hr></td>
-							<td><hr> 1200
+							<td><hr> <b><%=session.getAttribute("balance")%></b>
 								<hr></td>
-							<td><hr> 1300
+							<td><hr> <b><%=session.getAttribute("balance")%></b>
 								<hr></td>
-							<td><hr> 1200
+							<td><hr> <b><%=session.getAttribute("balance")%></b>
 								<hr></td>
 
 						</tr>

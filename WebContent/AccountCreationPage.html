@@ -6,6 +6,8 @@
 <link rel="stylesheet"
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="LoginPage.css">
+	<script src="./resources/jsFiles/loginPageValidations.js"></script>
+	
 		<title>AcountCreationPage</title>
 </head>
 <body>
@@ -18,19 +20,19 @@
 			style="width: 30%" align="center">
 			<tr>
 				<td>Name</td>
-				<td><input type="text" name="name" />
+				<td><input type="text" name="name" required="required" type="text"/>
 			</tr>
 			<tr>
 				<td>User Name</td>
-				<td><input type="text" name="uname" />
+				<td><input type="text" required="required" name="uname" />
 			</tr>
 			<tr>
 				<td>Password</td>
-				<td><input type="password" name="password" />
+				<td><input type="password" required="required" name="password" />
 			</tr>
 			<tr>
 				<td>Balance</td>
-				<td><input type="text" name="balance" />
+				<td><input class="input" maxlength="10" required="required" type="text" name="balance" autocomplete="off" />
 			</tr>
 			<tr>
 				<td><center>

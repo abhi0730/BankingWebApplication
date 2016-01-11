@@ -20,7 +20,7 @@
 
 	<div class="container-fluid">
 		<div id="top">
-			<form action="./logout" method="post">
+			<form action="./BankLoginPage.html" method="post">
 				<input type="submit" class="btn btn-danger" value="LogOut"
 					style="float: right;" onclick="logout" />
 			</form>

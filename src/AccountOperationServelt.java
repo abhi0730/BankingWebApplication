@@ -49,6 +49,7 @@ public class AccountOperationServelt extends HttpServlet {
 			 if(success >0)
 			 {
 				 out.println("Low Balance");
+				 session.setAttribute("balance", ats.getBalance());
 				 rd.forward(request, response);
 			 }
 			 else

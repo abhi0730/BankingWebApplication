@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="stylesheet"
+	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="LoginPage.css">
+		<title>AcountCreationPage</title>
+</head>
+<body>
+	<form action="./CreateAccountServlet" method="post">
+		<h1>
+			<center>Create your Bank Account</center>
+		</h1>
+
+		<table class="table table-bordered table-hover" border="2.0"
+			style="width: 30%" align="center">
+			<tr>
+				<td>Name</td>
+				<td><input type="text" name="name" />
+			</tr>
+			<tr>
+				<td>User Name</td>
+				<td><input type="text" name="uname" />
+			</tr>
+			<tr>
+				<td>Password</td>
+				<td><input type="password" name="password" />
+			</tr>
+			<tr>
+				<td>Balance</td>
+				<td><input type="text" name="balance" />
+			</tr>
+			<tr>
+				<td><center>
+						<input type="submit" class="btn btn-info" value=SignUp></input>
+					</center></td>
+				<td><center>
+						<input type="reset" class="btn btn-danger" value=Clear></input>
+					</center></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
+

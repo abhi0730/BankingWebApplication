@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+body
+{
+	background:#99ccff;
+}
+
+#left
+{ 
+	width:20%;
+	height:100%; 
+	float:left; 
+	color:green;
+	margin-top: 10% ;
+}
+
+#content
+{
+	width:60%;
+	height:100%; 
+	float:left;
+	margin: 5% 5% 10% 10%;
+}
+
+ul.leftList
+{
+	padding-bottom: 2px;
+}
+
+#homeid
+{
+	display:block;
+}
+
+#creditid
+{
+	display:none;
+}
+
+#debitid
+{
+	display:none;
+}
+
+#transid
+{
+	display:none;
+}

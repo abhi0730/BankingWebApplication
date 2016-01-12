@@ -57,6 +57,12 @@ public class CreateAccountServlet extends HttpServlet {
 			
 			rd.forward(request, response);
 		}
+		else if(success < 0)
+		{
+			response.getWriter().println("<h4><center>Username already taken,</br> Please try a new one.</center></h4>");
+			RequestDispatcher rdCPage = request.getRequestDispatcher("./AccountCreationPage.html");
+			rdCPage.include(request, response);
+		}
 		else
 		{
 			response.getWriter().println("Unsuccessful");

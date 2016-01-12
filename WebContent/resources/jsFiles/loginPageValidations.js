@@ -9,4 +9,4 @@ $('.input').keyup(function () {
 $(document).ready(function(){
 
 	mainFunction();			
-			});
+});

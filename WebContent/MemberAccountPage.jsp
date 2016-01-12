@@ -9,7 +9,6 @@
 	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css"
 	href="./resources/cssFiles/accountpage.css" />
-ss
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="./resources/jsFiles/accountPage.js"></script>
@@ -71,39 +70,30 @@ ss
 					</h1>
 					<table class="table table-bordered">
 						<tr>
-							<th><u>Transaction Number<u>
-										</td>
-										<th><u>SampleName</u>
-									</td>
-										<th><u>Credit</u>
-									</td>
-										<th><u>Debit</u></th>
-										<th><u>Totoal Amount</u></th>
+							<th><u>Transaction Number</u></th>
+							<th><u>Transaction type</u>
+							<th><u>Amount</u>
 						</tr>
+						<% Integer accNo = (Integer) session.getAttribute("accNo"); %>
 						<jsp:useBean id="transactions" class="beans.TransactionBean">
-
 						</jsp:useBean>
+						<jsp:setProperty property="accountNumber" name="transactions"
+							value="${accNo}" />
 
-						<c:forEach var="trans" items="${transactions.getTransList() }">
-
+						<c:forEach var="trans" items="${transactions.transList}">
+							<tr>
+								<td>${trans.transId}</td>
+								<td>${trans.type}</td>
+								<td>${trans.amount}</td>
+							</tr>
 						</c:forEach>
 
-
-						<tfoot>
-							<tr>
-								<td><b><u><hr> Total
-											<hr></u></b></td>
-								<td><hr> <b> Total Balance</b>
-									<hr></td>
-								<td><hr> <b><%=session.getAttribute("balance")%></b>
-									<hr></td>
-								<td><hr> <b><%=session.getAttribute("balance")%></b>
-									<hr></td>
-								<td><hr> <b><%=session.getAttribute("balance")%></b>
-									<hr></td>
-
-							</tr>
-						</tfoot>
+					</table>
+					<table class="table" width="20%">
+						<tr>
+							<td colspan="2"><b> Total Balance</b></td>
+							<td><b><%=session.getAttribute("balance")%></b></td>
+						</tr>
 					</table>
 				</div>
 			</div>

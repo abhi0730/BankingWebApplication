@@ -8,12 +8,23 @@ import supportClasses.Transaction;
 
 public class TransactionBean {
 	
+	int accountNumber;
 	List<Transaction> transList;
+	
+	
 
-	public List<Transaction> getTransList(int accountNo) {
+	public int getAccountNumber() {
+		return accountNumber;
+	}
+
+	public void setAccountNumber(int accountNumber) {
+		this.accountNumber = accountNumber;
+	}
+
+	public List<Transaction> getTransList() {
 		StorageDB sdb = new StorageDB();
 		try {
-			transList =  sdb.txListC(accountNo);
+			transList =  sdb.txListC(accountNumber);
 		} catch (NumberFormatException e) {
 			e.printStackTrace();
 		} catch (ParseException e) {

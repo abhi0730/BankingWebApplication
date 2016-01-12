@@ -126,6 +126,7 @@ public class StorageDB {
 	}
 	public List<Transaction> txListC(int AccountNumber) throws NumberFormatException, ParseException
 	{
+		conn = getConnection();
 		List<Transaction> transList = new ArrayList<Transaction>();
 		try {
 			pst = conn.prepareStatement("select * from txs where ACCNT_ID=?");

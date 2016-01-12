@@ -1,6 +1,7 @@
 package beans;
 
 import java.text.ParseException;
+import java.util.Collections;
 import java.util.List;
 
 import dbOperations.StorageDB;
@@ -30,6 +31,8 @@ public class TransactionBean {
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
+		
+		Collections.reverse(transList);
 		return transList;
 	}
 

@@ -21,8 +21,7 @@ public class AccountTranscations {
 	public double getBalance() {
 		double balance = 0;
 		try {
-			pst = conn
-					.prepareStatement("select * from accounts where ACCNT_ID=?");
+			pst = conn.prepareStatement("select * from accounts where ACCNT_ID=?");
 			pst.setInt(1, accountNo);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -38,16 +37,13 @@ public class AccountTranscations {
 	public void creditMoney(double amountCredit) {
 		double totalAnmount = getBalance() + amountCredit;
 		try {
-			pst = conn
-					.prepareStatement("update accounts SET balance = ? where ACCNT_ID=?");
+			pst = conn.prepareStatement("update accounts SET balance = ? where ACCNT_ID=?");
 			pst.setDouble(1, totalAnmount);
 			pst.setInt(2, accountNo);
 			pst.executeUpdate();
 			// --
-			pst = conn
-					.prepareStatement("insert into txs values(null,'Credit',?,?,?)");
-			java.sql.Timestamp date = new java.sql.Timestamp(
-					new java.util.Date().getTime());
+			pst = conn.prepareStatement("insert into txs values(null,'Credit',?,?,?)");
+			java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 			pst.setTimestamp(1, date);
 			pst.setInt(2, (int) amountCredit);
 			pst.setInt(3, accountNo);
@@ -65,16 +61,13 @@ public class AccountTranscations {
 		} else {
 			double totalAnmount = getBalance() - amountDebit;
 			try {
-				pst = conn
-						.prepareStatement("update accounts SET balance = ? where ACCNT_ID=?");
+				pst = conn.prepareStatement("update accounts SET balance = ? where ACCNT_ID=?");
 				pst.setDouble(1, totalAnmount);
 				pst.setInt(2, accountNo);
 				pst.executeUpdate();
 				// --
-				pst = conn
-						.prepareStatement("insert into txs values(null,'Debit',?,?,?)");
-				java.sql.Timestamp date = new java.sql.Timestamp(
-						new java.util.Date().getTime());
+				pst = conn.prepareStatement("insert into txs values(null,'Debit',?,?,?)");
+				java.sql.Timestamp date = new java.sql.Timestamp(new java.util.Date().getTime());
 				pst.setTimestamp(1, date);
 				pst.setInt(2, (int) amountDebit);
 				pst.setInt(3, accountNo);
@@ -96,14 +89,20 @@ public class AccountTranscations {
 		success = this.debitMoney(transferBalance);
 		if (success > 0) {
 			try {
-				pst = conn
-						.prepareStatement("update accounts set balance=? where ACCNT_ID=?");
-				pst.setDouble(1, total);
-				pst.setInt(2, accountNo);
-				success = pst.executeUpdate();
+				if (conn.createStatement().executeQuery("select * from accounts where ACCNT_ID=" + accountNo).next()) {
+					pst = conn.prepareStatement("update accounts set balance=? where ACCNT_ID=?");
+					pst.setDouble(1, total);
+					pst.setInt(2, accountNo);
+					pst.executeUpdate();
+				}
+				else
+				{
+					success =-1;
+				}
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
+
 		}
 		return success;
 	}

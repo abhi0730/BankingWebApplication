@@ -49,7 +49,10 @@
 				<div id="homeid">
 					<label>Account Number: <%=session.getAttribute("accNo")%>  Your Account balance is <%=session.getAttribute("balance")%></label>
 					<br /> <label>You can perform any actions by selecting the
-						appropriate menu item</label>
+						appropriate menu item</label><br/>
+						<c:if test="<%= session.getAttribute(\"transfered\") == (Object)1%>">
+						<div><h2 class="text-center">Account Transfer Failed, The specified account number does'nt exist.</h2></div>
+						</c:if>
 				</div>
 				<div id="creditid">
 					<fieldset>

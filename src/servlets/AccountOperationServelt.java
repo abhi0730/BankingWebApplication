@@ -56,6 +56,7 @@ public class AccountOperationServelt extends HttpServlet {
 			 else
 			 {
 				 session.setAttribute("balance", ats.getBalance());
+				 session.setAttribute("transfered", 0);
 				 rd.forward(request, response);
 			 }
 		 }
@@ -63,6 +64,7 @@ public class AccountOperationServelt extends HttpServlet {
 		 {
 			 ats.creditMoney(Double.parseDouble(request.getParameter("credit")));
 			 session.setAttribute("balance", ats.getBalance());
+			 session.setAttribute("transfered", 0);
 			 rd.forward(request, response);
 		 }
 		 else
@@ -71,6 +73,7 @@ public class AccountOperationServelt extends HttpServlet {
 			 {
 				 out.println("Transfer Failed");
 				 session.setAttribute("balance", ats.getBalance());
+				 session.setAttribute("transfered", 1);
 				 rd.forward(request, response); 
 			 }
 			 else

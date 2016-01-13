@@ -39,6 +39,7 @@
 					<li id="homeLink"><label><u>Home</u></label></li>
 					<li id="creditLink"><label><u>Credit balance</u></label></li>
 					<li id="debitLink"><label><u>Debit balance</u></label></li>
+					<li id="transferLink"><label><u>Transfer amount</u></label></li>
 					<li id="transLink"><label><u>Resent transactions</u></label></li>
 					<li></li>
 				</ul>
@@ -46,7 +47,7 @@
 
 			<div id="content">
 				<div id="homeid">
-					<label>Your Account balance is <%=session.getAttribute("balance")%></label>
+					<label>Account Number: <%=session.getAttribute("accNo")%>  Your Account balance is <%=session.getAttribute("balance")%></label>
 					<br /> <label>You can perform any actions by selecting the
 						appropriate menu item</label>
 				</div>
@@ -64,6 +65,16 @@
 							type="submit" name="operation" value="Debit" />
 					</fieldset>
 				</div>
+				
+				<div id="transferid">
+					<fieldset>
+						<legend> Transfer balance from one account to other account</legend>
+						Account Number: <input type="text" name="transferAccountNo" />
+						Amount: <input type="text" name="transferAmount" />
+						 <input	type="submit" name="operation" value="Transfer" />
+					</fieldset>
+				</div>
+				
 				<div id="transid">
 					<h1>
 						<center>Recent Transactions</center>

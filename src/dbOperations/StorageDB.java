@@ -22,7 +22,8 @@ public class StorageDB {
 
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/banking", "root", "root");
+			conn = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/banking", "root", "root");
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -53,28 +54,32 @@ public class StorageDB {
 
 	}
 
-	public int insertIntoTables(String name, String username, double balance, String password) throws SQLException {
+	public int insertIntoTables(String name, String username, double balance,
+			String password) throws SQLException {
 		conn = getConnection();
 
 		if (checkAllUsernames(username) == -1) {
 			return -1;
 		} else {
-			pst = conn.prepareStatement("insert into accounts values(null,?,?,500,?)");
+			pst = conn
+					.prepareStatement("insert into accounts values(null,?,?,500,?)");
 			pst.setString(1, name);
 			pst.setDouble(2, balance);
 			pst.setString(3, username);
 
 			pst.executeUpdate();
 
-			pst = conn.prepareStatement("insert into cred values(?,?,LAST_INSERT_ID())");
+			pst = conn
+					.prepareStatement("insert into cred values(?,?,LAST_INSERT_ID())");
 
 			pst.setString(1, username);
 			pst.setString(2, password);
 
 			return pst.executeUpdate();
 		}
-		
+
 	}
+
 	// public int insertIntoTransactionTables(int txid, int tx_type, Date date,
 	// Double amount, int accnt_id) throws SQLException
 	// {
@@ -121,7 +126,8 @@ public class StorageDB {
 	public TreeMap<String, String> findName(int accountNo) {
 		TreeMap<String, String> accMap = new TreeMap<String, String>();
 		try {
-			pst = conn.prepareStatement("select * from accounts where ACCNT_ID=?");
+			pst = conn
+					.prepareStatement("select * from accounts where ACCNT_ID=?");
 			pst.setInt(1, accountNo);
 			ResultSet rs = pst.executeQuery();
 			if (rs.next()) {
@@ -136,7 +142,8 @@ public class StorageDB {
 		return accMap;
 	}
 
-	public List<Transaction> txListC(int AccountNumber) throws NumberFormatException, ParseException {
+	public List<Transaction> txListC(int AccountNumber)
+			throws NumberFormatException, ParseException {
 		conn = getConnection();
 		List<Transaction> transList = new ArrayList<Transaction>();
 		try {
@@ -144,9 +151,10 @@ public class StorageDB {
 			pst.setInt(1, AccountNumber);
 			ResultSet rs = pst.executeQuery();
 			while (rs.next()) {
-				transList.add(new Transaction(rs.getInt("TX_ID"), rs.getString("TX_TYPE"),
-						Double.parseDouble(rs.getString("AMOUNT")),
-						new SimpleDateFormat("yyyy-mm-dd").parse((rs.getString("TX_DATE")))));
+				transList.add(new Transaction(rs.getInt("TX_ID"), rs
+						.getString("TX_TYPE"), Double.parseDouble(rs
+						.getString("AMOUNT")), new SimpleDateFormat(
+						"yyyy-mm-dd").parse((rs.getString("TX_DATE")))));
 			}
 
 		} catch (SQLException e) {
@@ -155,4 +163,5 @@ public class StorageDB {
 
 		return transList;
 	}
+	
 }

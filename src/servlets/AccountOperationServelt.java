@@ -59,11 +59,25 @@ public class AccountOperationServelt extends HttpServlet {
 				 rd.forward(request, response);
 			 }
 		 }
-		 else
+		 else if(request.getParameter("operation").equals("Credit"))
 		 {
 			 ats.creditMoney(Double.parseDouble(request.getParameter("credit")));
 			 session.setAttribute("balance", ats.getBalance());
 			 rd.forward(request, response);
+		 }
+		 else
+		 {
+			 if(0 > ats.transferMoney(Integer.parseInt(request.getParameter("transferAccountNo")), Double.parseDouble(request.getParameter("transferAmount"))))
+			 {
+				 out.println("Transfer Failed");
+				 session.setAttribute("balance", ats.getBalance());
+				 rd.forward(request, response); 
+			 }
+			 else
+			 {
+				 session.setAttribute("balance", ats.getBalance());
+				 rd.forward(request, response);
+			 }
 		 }
 	}
 
